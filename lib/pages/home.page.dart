@@ -1,10 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}): super(key: key);
+ //URI
+ //URL
+ getDataPokemon()async{
+  Uri _uri =Uri.parse("https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json");
+  http.Response response await http.get(_uri);
+  print(response.StatusCode);
+  print(response.body);
+
+
+ }
+
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Center(
+        child:ElevatedButton(
+          child: Text("Data") ,
+          onPressed: (){ 
+            getDataPokemon();
+
+          },
+          ),
+      ),
+    );
   }
 }
